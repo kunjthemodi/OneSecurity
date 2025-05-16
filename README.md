@@ -1,10 +1,12 @@
 # OneSecurity
-Password managing make easy for user 
+# Password management makes it easy for users. 
+
+Login page => 
 OneSecurity.com/login 
  ![image](https://github.com/user-attachments/assets/fa7a4141-bf69-4b4d-a8ed-93089629f2a9)
 
 
-
+Register page => 
 OneSecurity.com/Register
  ![image](https://github.com/user-attachments/assets/503e436d-6969-49b3-8a65-ff4ce75ffd0d)
 
