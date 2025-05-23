@@ -8,8 +8,15 @@ const authRoutes = require('./routes/authRoutes');
 const credentialRoutes = require('./routes/credentialRoutes'); 
 
 const app = express();
+const FRONTEND_ORIGIN = 'https://onesecurity.netlify.app';
 
-app.use(cors());
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true,            // allow session cookies from browser to pass through
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
