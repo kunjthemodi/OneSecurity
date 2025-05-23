@@ -1,5 +1,5 @@
 .login-page {
-  position: relative;      /* for absolutely positioned clock */
+  position: relative;      
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -7,22 +7,52 @@
   background: linear-gradient(to right, #ebf8ff, #f3e8ff);
   padding: 16px;
 }
-.live-clock .icon {
-  margin-right: 0.4rem;
-  vertical-align: middle;
-  font-size: 1.1em;     /* scales with the text */
-  color: inherit;       /* uses your neon-indigo color */
+
+.about {
+  position: absolute;
+  top: 1rem;
+  right: 7cm;                     /* use rem or px, not cm */
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4f46e5;                  /* indigo accent */
+  /* background: rgba(255, 255, 255, 0.4); */
+  padding: 1rem 0.75rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(6px);      /* frosted‐glass effect */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 0 4px rgba(255, 255, 255, 0.3); */
+  overflow: hidden;
+  /* transition: 
+    background 0.3s ease, 
+    transform 0.3s ease, 
+    box-shadow 0.3s ease; */
+  z-index: 100;
+  text-decoration: none;           /* remove underline */
 }
 
-.live-clock .live-zone {
-  display: block;
-  margin-top: 0.25rem;
-  font-size: 0.7rem;
-  opacity: 0.6;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+/* animated underline (pseudo‐element) */
+.about::after {
+  content: "";
+  position: absolute;
+  bottom: 0.35rem;
+  left: 0.75rem;
+  width: 0;
+  height: 2px;
+  background: #4f46e5;
+  transition: width 0.3s ease;
 }
+
+/* hover effects */
+.about:hover {
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+              inset 0 0 6px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.about:hover::after {
+  width: calc(100% - 1.5rem);      /* match padding */
+}
+
 .live-clock {
   position: absolute;
   top: 1rem;
@@ -41,6 +71,15 @@
   user-select: none;
 }
 
+.live-clock .live-zone {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 .live-clock .live-date {
   display: block;
   font-size: 1.4rem;
@@ -52,7 +91,12 @@
   font-size: 1.4rem;
   letter-spacing: 0.05em;
 }
-
+.live-clock .icon {
+  margin-right: 0.4rem;
+  vertical-align: middle;
+  font-size: 1.1em;     /* scales with the text */
+  color: inherit;       /* uses your neon-indigo color */
+}
 .live-clock .colon {
   animation: blink 1s steps(1) infinite;
 }

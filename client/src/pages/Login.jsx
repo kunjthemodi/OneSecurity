@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../components/Login.css';
@@ -12,7 +12,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const history = useHistory();
-  const [now] = useState(new Date());
+  const [now, setNow] = useState(new Date());
 
   const handleRegisterClick = e => {
     // let the <Link> do its navigation first...
@@ -39,7 +39,10 @@ export default function Login() {
       setLoading(false);
     }
   };
-
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   // 3) Format however you like
   const dateStr = now.toLocaleDateString();
@@ -50,6 +53,19 @@ export default function Login() {
 
   return (
     <div className="login-page">
+
+      <div className='about'>
+        <h4>
+            <a
+              href="https://hellokunj.netlify.app"
+              className="about-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About Kunj
+            </a>
+          </h4>
+      </div>
       <div className='live-clock'>
       <span className="live-date"><FaCalendarAlt className="icon" />{dateStr}
       </span>
@@ -62,6 +78,7 @@ export default function Login() {
       </span>
       <span className="live-zone">{tzName}</span>
       </div>
+
       <div className="info-section">
         <h1>Welcome to OneSecurity</h1>
         <p>Your all-in-one password manager designed to keep your credentials safe and accessible.</p>
