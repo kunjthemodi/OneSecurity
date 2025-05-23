@@ -7,7 +7,22 @@
   background: linear-gradient(to right, #ebf8ff, #f3e8ff);
   padding: 16px;
 }
+.live-clock .icon {
+  margin-right: 0.4rem;
+  vertical-align: middle;
+  font-size: 1.1em;     /* scales with the text */
+  color: inherit;       /* uses your neon-indigo color */
+}
 
+.live-clock .live-zone {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 .live-clock {
   position: absolute;
   top: 1rem;
@@ -28,8 +43,8 @@
 
 .live-clock .live-date {
   display: block;
-  font-size: 0.85rem;
-  opacity: 0.7;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
 }
 
 .live-clock .live-time {
@@ -47,12 +62,7 @@
   50%, 100% { opacity: 0; }
 }
 
-.live-clock .ampm {
-  font-size: 0.75rem;
-  vertical-align: super;
-  margin-left: 0.3rem;
-  opacity: 1;
-}
+
 
 .info-section {
   position: relative;

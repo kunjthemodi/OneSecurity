@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../components/Login.css';
+import { FaCalendarAlt, FaClock } from 'react-icons/fa';  // ← add this
 
 export default function Login() {
   const [status, setStatus] = useState({ text: '', type: '' });
@@ -41,19 +42,25 @@ export default function Login() {
 
 
   // 3) Format however you like
-  //const dateStr = now.toLocaleDateString();
+  const dateStr = now.toLocaleDateString();
   const timeStr = now.toLocaleTimeString(); 
   const [h, m, s] = timeStr.split(/:| /);     // splits ["HH", "MM", "SS", "AM/PM"]
   const ampm = timeStr.endsWith('AM') ? 'AM' : 'PM';
+  const tzName  = Intl.DateTimeFormat().resolvedOptions().timeZone; 
 
   return (
     <div className="login-page">
       <div className='live-clock'>
+      <span className="live-date"><FaCalendarAlt className="icon" />{dateStr}
+      </span>
       <span className="live-time">
+              <FaClock className="icon" />
+
         {h}<span className="colon">:</span>
         {m}<span className="colon">:</span>
         {s} <span className="ampm">{ampm}</span>
       </span>
+      <span className="live-zone">{tzName}</span>
       </div>
       <div className="info-section">
         <h1>Welcome to OneSecurity</h1>
