@@ -40,6 +40,17 @@ export default function Login() {
 
   return (
     <div className="login-page">
+      <div className="info-section">
+        <h1>Welcome to OneSecurity</h1>
+        <p>Your all-in-one password manager designed to keep your credentials safe and accessible.</p>
+        <ul>
+          <li>🔒 End-to-end encryption: Your data is encrypted locally with AES-256.</li>
+          <li>🛡️ Zero-knowledge architecture: We never store or see your master password.</li>
+          <li>🔑 PBKDF2 with salt & pepper for secure password hashing.</li>
+          <li>🌐 HTTPS with TLS 1.3 ensures secure data in transit.</li>
+          <li>⚙️ Optional Two-Factor Authentication for extra protection.</li>
+        </ul>
+      </div>
       <div className="login-card">
         <h2 className="login-title">OneSecurity</h2>
 

@@ -1,3 +1,92 @@
+.info-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3rem;
+  background: linear-gradient(120deg, #4f46e5 0%, #3b82f6 100%);
+  color: #ffffff;
+  /* Widen the slant from 65/55 up to 70/85 */
+  clip-path: polygon(0 0, 70% 0, 90% 100%, );
+  overflow: hidden;
+}
+
+/* ===== Soft “bubble” accents ===== */
+.info-section::before,
+.info-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  z-index: 0;
+}
+.info-section::before {
+  width: 300px;
+  height: 300px;
+  top: -80px;
+  left: -80px;
+}
+.info-section::after {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -150px;
+}
+
+/* ===== Headings & tagline ===== */
+.info-section h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  z-index: 1;
+}
+.info-section p.subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+
+/* ===== Feature list as two-column grid ===== */
+.info-section ul.features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+.info-section ul.features li {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+.info-section ul.features li svg,
+.info-section ul.features li .icon {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.75rem;
+  color: #ffdf5d;
+}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 1024px) {
+  .info-section {
+    clip-path: none;
+    padding: 3rem 1.5rem;
+  }
+  .info-section ul.features {
+    grid-template-columns: 1fr;
+  }
+  .info-section h2 {
+    font-size: 2.25rem;
+  }
+}
+
+
 .login-page {
   min-height: 100vh;
   display: flex;
