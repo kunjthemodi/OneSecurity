@@ -1,7 +1,11 @@
 import axios from 'axios';
-
+const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:5000';
 const api = axios.create({
+<<<<<<< HEAD
   baseURL: 'ht5000tp://localhost:/api',
+=======
+  baseURL: `${API_BASE}/api`,
+>>>>>>> d762bb6ed7cf5aebceed880dbdab1807e0cc159a
   withCredentials: true, // send HttpOnly cookies
 });
 
@@ -47,7 +51,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       isRefreshing = true;
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:5000/api/auth/refresh', null, { withCredentials: true })
+        api.post('auth/refresh', null, { withCredentials: true })
           .then(({ data }) => {
             const newToken = data.accessToken;
             localStorage.setItem('accessToken', newToken);
