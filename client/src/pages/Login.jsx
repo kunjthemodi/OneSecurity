@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../components/Login.css';
@@ -11,6 +11,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const history = useHistory();
+  const [now] = useState(new Date());
 
   const handleRegisterClick = e => {
     // let the <Link> do its navigation first...
@@ -38,8 +39,22 @@ export default function Login() {
     }
   };
 
+
+  // 3) Format however you like
+  //const dateStr = now.toLocaleDateString();
+  const timeStr = now.toLocaleTimeString(); 
+  const [h, m, s] = timeStr.split(/:| /);     // splits ["HH", "MM", "SS", "AM/PM"]
+  const ampm = timeStr.endsWith('AM') ? 'AM' : 'PM';
+
   return (
     <div className="login-page">
+      <div className='live-clock'>
+      <span className="live-time">
+        {h}<span className="colon">:</span>
+        {m}<span className="colon">:</span>
+        {s} <span className="ampm">{ampm}</span>
+      </span>
+      </div>
       <div className="info-section">
         <h1>Welcome to OneSecurity</h1>
         <p>Your all-in-one password manager designed to keep your credentials safe and accessible.</p>
@@ -109,6 +124,11 @@ export default function Login() {
           </Link>
         </p>
       </div>
+
+       <footer className="site-footer">
+      <p>&copy; {new Date().getFullYear()} Kunj Modi. All rights reserved.</p>
+      <p>Contact: <a href="mailto:kunjkumar.modi@ontariotechu.net">kunjkumar.modi@ontariotechu.net</a></p>
+    </footer>
     </div>
   );
 }
