@@ -12,10 +12,26 @@ const credentialRoutes = require('./routes/credentialRoutes');
 const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
-app.use(cors()); app.use(helmet()); app.use(express.json());
+const FRONTEND_ORIGIN = 'https://onesecurity.netlify.app';
 
-// Rate limiter for auth endpoints
-const authLimiter = rateLimit({ windowMs: 15*60*1000, max: 20, message: 'Too many requests' });
+// 1) CORS preflight handler for all routes
+app.options('*', cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
+
+// 3) Other hardening middlewares
+app.use(helmet());
+app.use(express.json());
+
 
 // Health-check
 app.get('/', async (req, res) => {
@@ -26,7 +42,8 @@ app.get('/', async (req, res) => {
     res.status(500).send('DB connection failed');
   }
 });
-
+// Rate limiter for auth endpoints
+const authLimiter = rateLimit({ windowMs: 15*60*1000, max: 20, message: 'Too many requests' });
 // Auth routes (with rate limiter)
 app.use('/api/auth', authLimiter, authRoutes);
 
