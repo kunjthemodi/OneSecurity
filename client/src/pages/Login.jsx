@@ -96,7 +96,9 @@ export default function Login() {
         alt="Flying plane"
         onAnimationEnd={handlePlaneAnimationEnd}
       />        
-      <img src={smoke} className="smoke" alt="Smoke behind"/>
+      <img src={smoke} 
+      className={`smoke ${loginSuccess ? 'success' : ''} ${landed ? 'landed' : ''}`} 
+      alt="Smoke behind"/>
 
       <div className="info-section">
         <h1>Welcome to OneSecurity</h1>
