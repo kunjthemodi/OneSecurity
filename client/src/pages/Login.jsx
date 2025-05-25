@@ -15,6 +15,9 @@ export default function Login() {
   const { login } = useAuth();
   const history = useHistory();
   const [now, setNow] = useState(new Date());
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [landed, setLanded] = useState(false);
+
 
   const handleRegisterClick = e => {
     // let the <Link> do its navigation first...
@@ -30,6 +33,7 @@ export default function Login() {
     try {
       await login(email.trim(), password);
       setStatus({ text: 'Login successful! Redirecting…', type: 'success' });
+      setLoginSuccess(true);
       clearStatus();
       setTimeout(() => {
         history.push('/dashboard');
@@ -39,6 +43,11 @@ export default function Login() {
       clearStatus();
     } finally {
       setLoading(false);
+    }
+  };
+  const handlePlaneAnimationEnd = e => {
+    if (e.animationName === 'planeLand') {
+      setLanded(true);
     }
   };
   useEffect(() => {
@@ -81,8 +90,13 @@ export default function Login() {
       <span className="live-zone">{tzName}</span>
       </div>
       <div className="hero-section relative overflow-visible">
-        <img src={plane} className="plane" alt="Flying plane" />
-        <img src={smoke} className="smoke" alt="Smoke behind"/>
+      <img
+        src={plane}
+        className={`plane ${loginSuccess ? 'success' : ''} ${landed ? 'landed' : ''}`}
+        alt="Flying plane"
+        onAnimationEnd={handlePlaneAnimationEnd}
+      />        
+      <img src={smoke} className="smoke" alt="Smoke behind"/>
 
       <div className="info-section">
         <h1>Welcome to OneSecurity</h1>
