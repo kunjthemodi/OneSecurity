@@ -3,6 +3,8 @@ import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../components/Login.css';
 import { FaCalendarAlt, FaClock } from 'react-icons/fa';  // ← add this
+import plane from '../assets/plane.png'; // make sure the path is correct
+import smoke from '../assets/smoke.png'; // make sure the path is correct
 
 export default function Login() {
   const [status, setStatus] = useState({ text: '', type: '' });
@@ -78,6 +80,9 @@ export default function Login() {
       </span>
       <span className="live-zone">{tzName}</span>
       </div>
+      <div className="hero-section relative overflow-visible">
+        <img src={plane} className="plane" alt="Flying plane" />
+        <img src={smoke} className="smoke" alt="Smoke behind"/>
 
       <div className="info-section">
         <h1>Welcome to OneSecurity</h1>
@@ -89,6 +94,7 @@ export default function Login() {
           <li>🌐 HTTPS with TLS 1.3 ensures secure data in transit.</li>
           <li>⚙️ Optional Two-Factor Authentication for extra protection.</li>
         </ul>
+      </div>
       </div>
       <div className="login-card">
         <h2 className="login-title">OneSecurity</h2>
