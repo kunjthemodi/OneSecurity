@@ -33,7 +33,10 @@
 @keyframes enlargePlane { 0% { transform: translate(50vw,40px) scale(1) } 100% { transform: translate(50vw,40px) scale(1.5) } }
 @keyframes enlargeSmoke { 0% { transform: translate(50vw,40px) scale(1) } 100% { transform: translate(50vw,40px) scale(1.5) } }
 
-
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 
 .loginhome {
@@ -57,7 +60,6 @@
   );
   z-index: 0;
 }
-
 /* decorative circles */
 .loginhome::before,
 .loginhome::after {
@@ -69,7 +71,7 @@
 }
 .loginhome::before {
   width: 300px; height: 300px;
-  top: -80px;    left: -80px;
+  top: -80px;   left: -80px;
 }
 .loginhome::after {
   width: 500px; height: 500px;
@@ -84,7 +86,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 1;
   padding: 0;      
   margin-left: 5rem;            
   margin-bottom: 10rem;           
@@ -131,15 +132,14 @@
   }
 }
 
-.login-card {
-  background: white;
+.loginhome .login-card {
+  flex: 1 1 0;
+  max-width: 400px;
+  margin-left: auto;              /* shove it to the right */
+  background: #fff;
   padding: 32px;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-  margin-left: auto;     /* pushes it to the right in flex layout */
-  margin-right: 16px;    /* spacing from the viewport edge */
+  box-shadow: 10px 8px 16px rgba(5, 1, 23, 0.305);
 }
 .login-card h2 {
   font-size: 2rem;
@@ -163,11 +163,12 @@
   color: #4a5568;
 }
 .login-form input {
+  
   width: 100%;
   padding: 12px;
   border: 1px solid #cbd5e0;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
 }
 .password-input-wrapper {
   position: relative;
@@ -181,7 +182,7 @@
   border: none;
   color: #4a5568;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
 }
 .login-button {
   width: 100%;
@@ -233,21 +234,21 @@
 }
 .site-footer a { pointer-events: auto; }
 
+/* 6) Mobile: stack panels & center the card */
 @media (max-width: 600px) {
   .loginhome {
     flex-direction: column;
-    gap: 0rem;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    clip-path: none;
   }
   .loginhome > * {
     width: 100%;
-    min-width: auto;
     margin-left: 0;
   }
-  .info-section {
-    clip-path: none;
-    padding: 3rem 1.5rem;
+  .loginhome .login-card {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 24px;
   }
-  .info-section ul.features { grid-template-columns: 1fr; }
-  .info-section h2 { font-size: 2.25rem; }
-  .plane, .smoke, .success-circle { display: none; }
 }

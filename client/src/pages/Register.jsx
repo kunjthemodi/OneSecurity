@@ -40,7 +40,7 @@ export default function Register() {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-home">
       <div className="login-card">
         <h2 className="login-title">Create Account</h2>
         <form onSubmit={handleSubmit} className="login-form">
