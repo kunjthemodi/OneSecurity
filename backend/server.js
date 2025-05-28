@@ -25,7 +25,7 @@ app.use('/api/credentials', credentialRoutes);
 
 // … your 404 and error handlers …
 // 4) (Optional) a simple root handler so GET / isn’t 404
-app.get('/', (req, res) => res.send(`🎉 OneSecurity API is alive! DB time: ${now.rows[0].now}`));
+app.get('/', (req, res) => res.send(`🎉 OneSecurity API is alive! `));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
