@@ -1,10 +1,10 @@
-import React, { useState,useEffect} from 'react';
+import React, { useState} from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../components/Login.css';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';  // ← add this
-import plane from '../assets/plane.png'; // make sure the path is correct
-import smoke from '../assets/smoke.png'; // make sure the path is correct
+import plane from '../assets/plane.png'; 
+import smoke from '../assets/smoke.png'; 
+import Header from "../pages/header";
 
 export default function Login() {
   const [status, setStatus] = useState({ text: '', type: '' });
@@ -14,7 +14,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const history = useHistory();
-  const [now, setNow] = useState(new Date());
+
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [landed, setLanded] = useState(false);
 
@@ -50,45 +50,13 @@ export default function Login() {
       setLanded(true);
     }
   };
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
 
-  // 3) Format however you like
-  const dateStr = now.toLocaleDateString();
-  const timeStr = now.toLocaleTimeString(); 
-  const [h, m, s] = timeStr.split(/:| /);     // splits ["HH", "MM", "SS", "AM/PM"]
-  const ampm = timeStr.endsWith('AM') ? 'AM' : 'PM';
-  const tzName  = Intl.DateTimeFormat().resolvedOptions().timeZone; 
+
 
   return (
     <div className="login-page">
+      <Header />
 
-      <div className='about'>
-        <h4>
-            <a
-              href="https://hellokunj.netlify.app"
-              className="about-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              About Kunj
-            </a>
-          </h4>
-      </div>
-      <div className='live-clock'>
-      <span className="live-date"><FaCalendarAlt className="icon" />{dateStr}
-      </span>
-      <span className="live-time">
-              <FaClock className="icon" />
-
-        {h}<span className="colon">:</span>
-        {m}<span className="colon">:</span>
-        {s} <span className="ampm">{ampm}</span>
-      </span>
-      <span className="live-zone">{tzName}</span>
-      </div>
       <div className="hero-section relative overflow-visible">
       <img
         src={plane}
@@ -99,23 +67,21 @@ export default function Login() {
       <img src={smoke} 
       className={`smoke ${loginSuccess ? 'success' : ''} ${landed ? 'landed' : ''}`} 
       alt="Smoke behind"/>
-
-      <div className="info-section">
-        <h1>Welcome to OneSecurity</h1>
-        <p>Your all-in-one password manager designed to keep your credentials safe and accessible.</p>
-        <ul>
-          <li>🔒 End-to-end encryption: Your data is encrypted locally with AES-256.</li>
-          <li>🛡️ Zero-knowledge architecture: We never store or see your master password.</li>
-          <li>🔑 PBKDF2 with salt & pepper for secure password hashing.</li>
-          <li>🌐 HTTPS with TLS 1.3 ensures secure data in transit.</li>
-          <li>⚙️ Optional Two-Factor Authentication for extra protection.</li>
-        </ul>
       </div>
-      </div>
-      <div className="login-card">
-        <h2 className="login-title">OneSecurity</h2>
-
-        
+      <div className='loginhome'>
+        <div className="info-section">
+          <h1>Welcome to OneSecurity</h1>
+          <p>Your all-in-one password manager designed to keep your credentials safe and accessible.</p>
+          <ul>
+            <li>🔒 End-to-end encryption: Your data is encrypted locally with AES-256.</li>
+            <li>🛡️ Zero-knowledge architecture: We never store or see your master password.</li>
+            <li>🔑 PBKDF2 with salt & pepper for secure password hashing.</li>
+            <li>🌐 HTTPS with TLS 1.3 ensures secure data in transit.</li>
+            <li>⚙️ Optional Two-Factor Authentication for extra protection.</li>
+          </ul>
+        </div>
+        <div className="login-card">
+          <h2 className="login-title">OneSecurity</h2>  
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -169,9 +135,12 @@ export default function Login() {
             Register
           </Link>
         </p>
+        </div>
       </div>
+        
 
-       <footer className="site-footer">
+      
+      <footer className="site-footer">
       <p>&copy; {new Date().getFullYear()} Kunj Modi. All rights reserved.</p>
       <p>Contact: <a href="mailto:kunjkumar.modi@ontariotechu.net">kunjkumar.modi@ontariotechu.net</a></p>
     </footer>

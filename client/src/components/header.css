@@ -1,0 +1,62 @@
+/* Header.css */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;    
+  align-items: center;
+  gap: 1rem;                  
+  padding: 0.75rem 0.2rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Left cell */
+.about-link {
+  justify-self: start;
+  font-weight: 600;
+  color: #5c2dee;
+  text-decoration: none;
+}
+.about-link:hover {
+  text-decoration: underline;
+}
+
+/* Center cell */
+.header-right {
+  justify-self: right;
+  display: flex;
+  align-items: right;
+}
+
+.live-clock {
+  display: flex;            /* row is the default direction */
+  align-items: center;      /* vertical-center the icons/text */
+  gap: 0.5rem;                /* space between each block */
+  font-size: 0.9rem;
+  color: #751d7d;
+}
+
+/* 2) Ensure each piece lines up nicely */
+.live-date,
+.live-time,
+.live-zone {
+  display: flex;
+  align-items: center;
+  margin: 0;                /* kill any top/bottom margins */
+}
+
+/* 3) Tweak the timezone text a bit */
+.live-zone {
+  font-size: 0.75rem;
+  color: #cf1ca8;
+}
+
+/* 4) Icon spacing (optional) */
+.live-clock .icon {
+  margin-right: 0rem;
+}
